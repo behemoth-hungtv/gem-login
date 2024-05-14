@@ -4,7 +4,7 @@ import {
   store,
   router,
   resetRouter,
-  routerArrays,
+  // routerArrays,
   storageLocal
 } from "../utils";
 import {
@@ -14,7 +14,7 @@ import {
   getLogout,
   refreshTokenApi
 } from "@/api/user";
-import { useMultiTagsStoreHook } from "./multiTags";
+// import { useMultiTagsStoreHook } from "./multiTags";
 import { type DataInfo, setToken, removeToken, userKey } from "@/utils/auth";
 
 export const useUserStore = defineStore({

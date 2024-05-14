@@ -53,3 +53,15 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss">
+.el-popover.el-popper {
+  z-index: 2014 !important;
+  position: fixed !important;
+  width: 371px !important;
+  transform: translate(-50%, -50%);
+  left: 50% !important;
+  top: 50% !important;
+  padding: 20px !important;
+}
+</style>

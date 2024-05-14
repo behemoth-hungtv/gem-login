@@ -57,7 +57,7 @@ const { title, getDropdownItemStyle, getDropdownItemClass } = useNav();
 const { locale, translationCh, translationEn } = useTranslationLang();
 
 const ruleForm = reactive({
-  username: "admin",
+  email: "admin",
   password: "admin123",
   verifyCode: ""
 });
@@ -68,7 +68,7 @@ const onLogin = async (formEl: FormInstance | undefined) => {
     if (valid) {
       loading.value = true;
       useUserStoreHook()
-        .loginByUsername({ username: ruleForm.username, password: "admin123" })
+        .loginByUsername({ email: ruleForm.email, password: ruleForm.password })
         .then(res => {
           if (res.success) {
             // 获取后端路由
@@ -86,7 +86,11 @@ const onLogin = async (formEl: FormInstance | undefined) => {
             message(t("login.pureLoginFail"), { type: "error" });
           }
         })
-        .catch(err => console.log("err", err))
+        .catch(err => {
+          message(`Login Info is incorrect, please try again`, {
+            type: "error"
+          });
+        })
         .finally(() => (loading.value = false));
     }
   });
@@ -187,14 +191,14 @@ watch(loginDay, value => {
                 :rules="[
                   {
                     required: true,
-                    message: transformI18n($t('login.pureUsernameReg')),
+                    message: transformI18n($t('login.pureEmailReg')),
                     trigger: 'blur'
                   }
                 ]"
-                prop="username"
+                prop="email"
               >
                 <el-input
-                  v-model="ruleForm.username"
+                  v-model="ruleForm.email"
                   clearable
                   :placeholder="t('login.pureUsername')"
                   :prefix-icon="useRenderIcon(User)"

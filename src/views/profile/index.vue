@@ -87,9 +87,9 @@ onMounted(() => {
                   </span>
                 </template>
                 <component
-                  ref="panelsRef"
                   :is="item.component"
                   v-if="selected == index"
+                  ref="panelsRef"
                 />
               </el-tab-pane>
             </template>

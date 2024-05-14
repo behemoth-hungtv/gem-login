@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import { storageLocal } from "@pureadmin/utils";
 import { useUserStoreHook } from "@/store/modules/user";
 
-export interface DataInfo<T> {
+export interface DataInfo {
   /** token */
   accessToken: string;
   /** `accessToken`的过期时间（时间戳） */

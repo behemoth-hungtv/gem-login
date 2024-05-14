@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import editForm from "../form.vue";
 import { handleTree } from "@/utils/tree";
 import { message } from "@/utils/message";
-import { ElMessageBox } from "element-plus";
+// import { ElMessageBox } from "element-plus";
 import { usePublicHooks } from "../../hooks";
 import { transformI18n } from "@/plugins/i18n";
 import { addDialog } from "@/components/ReDialog";
@@ -42,10 +42,10 @@ export function useRole(treeRef: Ref) {
   const loading = ref(true);
   const isLinkage = ref(false);
   const treeSearchValue = ref();
-  const switchLoadMap = ref({});
+  // const switchLoadMap = ref({});
   const isExpandAll = ref(false);
   const isSelectAll = ref(false);
-  const { switchStyle } = usePublicHooks();
+  // const { switchStyle } = usePublicHooks();
   const treeProps = {
     value: "id",
     label: "title",
@@ -131,47 +131,47 @@ export function useRole(treeRef: Ref) {
   //   ];
   // });
 
-  function onChange({ row, index }) {
-    ElMessageBox.confirm(
-      `确认要<strong>${
-        row.status === 0 ? "停用" : "启用"
-      }</strong><strong style='color:var(--el-color-primary)'>${
-        row.name
-      }</strong>吗?`,
-      "系统提示",
-      {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-        dangerouslyUseHTMLString: true,
-        draggable: true
-      }
-    )
-      .then(() => {
-        switchLoadMap.value[index] = Object.assign(
-          {},
-          switchLoadMap.value[index],
-          {
-            loading: true
-          }
-        );
-        setTimeout(() => {
-          switchLoadMap.value[index] = Object.assign(
-            {},
-            switchLoadMap.value[index],
-            {
-              loading: false
-            }
-          );
-          message(`已${row.status === 0 ? "停用" : "启用"}${row.name}`, {
-            type: "success"
-          });
-        }, 300);
-      })
-      .catch(() => {
-        row.status === 0 ? (row.status = 1) : (row.status = 0);
-      });
-  }
+  // function onChange({ row, index }) {
+  //   ElMessageBox.confirm(
+  //     `确认要<strong>${
+  //       row.status === 0 ? "停用" : "启用"
+  //     }</strong><strong style='color:var(--el-color-primary)'>${
+  //       row.name
+  //     }</strong>吗?`,
+  //     "系统提示",
+  //     {
+  //       confirmButtonText: "确定",
+  //       cancelButtonText: "取消",
+  //       type: "warning",
+  //       dangerouslyUseHTMLString: true,
+  //       draggable: true
+  //     }
+  //   )
+  //     .then(() => {
+  //       switchLoadMap.value[index] = Object.assign(
+  //         {},
+  //         switchLoadMap.value[index],
+  //         {
+  //           loading: true
+  //         }
+  //       );
+  //       setTimeout(() => {
+  //         switchLoadMap.value[index] = Object.assign(
+  //           {},
+  //           switchLoadMap.value[index],
+  //           {
+  //             loading: false
+  //           }
+  //         );
+  //         message(`已${row.status === 0 ? "停用" : "启用"}${row.name}`, {
+  //           type: "success"
+  //         });
+  //       }, 300);
+  //     })
+  //     .catch(() => {
+  //       row.status === 0 ? (row.status = 1) : (row.status = 0);
+  //     });
+  // }
 
   async function handleDelete(row) {
     await getRoleDestroy({ profile_id: row.id });

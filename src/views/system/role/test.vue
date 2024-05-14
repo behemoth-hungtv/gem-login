@@ -275,12 +275,13 @@ const tableData = [
         class="functional-section flex flex-wrap gap-3.5 mt-3 justify-center"
       >
         <el-button
-          v-for="data in functionButtonsData"
+          v-for="(data, index) in functionButtonsData"
+          :key="index"
           :type="data.type"
           plain
           :icon="useRenderIcon(data.icon)"
-          @click="resetForm(formRef)"
           class="mx-0"
+          @click="resetForm(formRef)"
         >
           {{ data.text }}
         </el-button>
@@ -399,7 +400,7 @@ const tableData = [
     </div>
 
     <div>
-      <el-dialog center v-model="dialogVisible" align-center title="Details">
+      <el-dialog v-model="dialogVisible" center align-center title="Details">
         <el-table center :data="tableData">
           <el-table-column prop="key" width="200" />
           <el-table-column prop="value" width="200" />

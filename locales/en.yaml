@@ -220,7 +220,7 @@ login:
   purePrivacyPolicy: Privacy Policy
   pureGetVerifyCode: Get VerifyCode
   pureInfo: Seconds
-  pureUsernameReg: Please enter username
+  pureEmailReg: Please enter Email
   purePassWordReg: Please enter password
   pureVerifyCodeReg: Please enter verify code
   pureVerifyCodeCorrectReg: Please enter correct verify code
