@@ -150,6 +150,7 @@ menus:
   purePiniaDoc: Pinia
   pureRouterDoc: Vue-Router
   pureAbout: About
+  pureProfile: Profile
   pureResult: Result Page
   pureSuccess: Success Page
   pureFail: Fail Page

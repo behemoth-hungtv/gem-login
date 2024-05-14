@@ -82,9 +82,11 @@ const onLogin = async (formEl: FormInstance | undefined) => {
                 .finally(() => (disabled.value = false));
             });
           } else {
+            console.log("err", res);
             message(t("login.pureLoginFail"), { type: "error" });
           }
         })
+        .catch(err => console.log("err", err))
         .finally(() => (loading.value = false));
     }
   });
@@ -114,6 +116,7 @@ watch(loginDay, value => {
 
 <template>
   <div class="select-none">
+    <h3>{{ locale }}</h3>
     <img :src="bg" class="wave" />
     <div class="flex-c absolute right-5 top-3">
       <!-- 主题 -->
@@ -211,7 +214,7 @@ watch(loginDay, value => {
               </el-form-item>
             </Motion>
 
-            <Motion :delay="200">
+            <!-- <Motion :delay="200">
               <el-form-item prop="verifyCode">
                 <el-input
                   v-model="ruleForm.verifyCode"
@@ -224,7 +227,7 @@ watch(loginDay, value => {
                   </template>
                 </el-input>
               </el-form-item>
-            </Motion>
+            </Motion> -->
 
             <Motion :delay="250">
               <el-form-item>

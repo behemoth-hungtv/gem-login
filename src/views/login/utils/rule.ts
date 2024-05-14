@@ -18,31 +18,33 @@ const loginRules = reactive<FormRules>({
       validator: (rule, value, callback) => {
         if (value === "") {
           callback(new Error(transformI18n($t("login.purePassWordReg"))));
-        } else if (!REGEXP_PWD.test(value)) {
-          callback(new Error(transformI18n($t("login.purePassWordRuleReg"))));
-        } else {
-          callback();
         }
-      },
-      trigger: "blur"
-    }
-  ],
-  verifyCode: [
-    {
-      validator: (rule, value, callback) => {
-        if (value === "") {
-          callback(new Error(transformI18n($t("login.pureVerifyCodeReg"))));
-        } else if (useUserStoreHook().verifyCode !== value) {
-          callback(
-            new Error(transformI18n($t("login.pureVerifyCodeCorrectReg")))
-          );
-        } else {
+        // else if (!REGEXP_PWD.test(value)) {
+        //   callback(new Error(transformI18n($t("login.purePassWordRuleReg"))));
+        // }
+        else {
           callback();
         }
       },
       trigger: "blur"
     }
   ]
+  // verifyCode: [
+  //   {
+  //     validator: (rule, value, callback) => {
+  //       if (value === "") {
+  //         callback(new Error(transformI18n($t("login.pureVerifyCodeReg"))));
+  //       } else if (useUserStoreHook().verifyCode !== value) {
+  //         callback(
+  //           new Error(transformI18n($t("login.pureVerifyCodeCorrectReg")))
+  //         );
+  //       } else {
+  //         callback();
+  //       }
+  //     },
+  //     trigger: "blur"
+  //   }
+  // ]
 });
 
 /** 手机登录校验 */

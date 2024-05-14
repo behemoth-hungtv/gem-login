@@ -11,6 +11,7 @@ import {
   type UserResult,
   type RefreshTokenResult,
   getLogin,
+  getLogout,
   refreshTokenApi
 } from "@/api/user";
 import { useMultiTagsStoreHook } from "./multiTags";
@@ -74,7 +75,17 @@ export const useUserStore = defineStore({
       return new Promise<UserResult>((resolve, reject) => {
         getLogin(data)
           .then(data => {
-            if (data?.success) setToken(data.data);
+            if (data?.success) {
+              const now = new Date();
+
+              data.data.expires = new Date(
+                now.getTime() + data.data.expires_in * 1000
+              ).getTime();
+              data.data.accessToken = data.data.access_token;
+              data.data.refreshToken = data.data.refresh_token;
+
+              setToken(data.data);
+            }
             resolve(data);
           })
           .catch(error => {
@@ -87,7 +98,8 @@ export const useUserStore = defineStore({
       this.username = "";
       this.roles = [];
       removeToken();
-      useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);
+      getLogout();
+      // useMultiTagsStoreHook().handleTags("equal", [...routerArrays]);
       resetRouter();
       router.push("/login");
     },
@@ -97,6 +109,14 @@ export const useUserStore = defineStore({
         refreshTokenApi(data)
           .then(data => {
             if (data) {
+              const now = new Date();
+
+              data.data.refreshToken = data.data.refresh_token;
+              data.data.accessToken = data.data.access_token;
+              data.data.expires = new Date(
+                now.getTime() + data.data.expires_in * 1000
+              ).getTime();
+
               setToken(data.data);
               resolve(data);
             }

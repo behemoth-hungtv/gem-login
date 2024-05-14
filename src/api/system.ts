@@ -9,6 +9,7 @@ type ResultTable = {
   success: boolean;
   data?: {
     /** 列表数据 */
+    items: Array<any>;
     list: Array<any>;
     /** 总条目数 */
     total?: number;
@@ -36,7 +37,11 @@ export const getRoleIds = (data?: object) => {
 
 /** 获取系统管理-角色管理列表 */
 export const getRoleList = (data?: object) => {
-  return http.request<ResultTable>("post", "/role", { data });
+  return http.request<ResultTable>(
+    "get",
+    "http://103.139.202.40:8080/api/profiles",
+    { data }
+  );
 };
 
 /** 获取系统管理-菜单管理列表 */
@@ -82,4 +87,13 @@ export const getRoleMenu = (data?: object) => {
 /** 获取角色管理-权限-菜单权限-根据角色 id 查对应菜单 */
 export const getRoleMenuIds = (data?: object) => {
   return http.request<Result>("post", "/role-menu-ids", { data });
+};
+
+// Custom
+export const getRoleDestroy = (data: object) => {
+  return http.request<Result>(
+    "delete",
+    "http://103.139.202.40:8080/api/profiles/remove?profile_id=3",
+    { data }
+  );
 };

@@ -113,6 +113,7 @@ onBeforeUnmount(() => {
           :key="routes.path"
           :item="routes"
           :base-path="routes.path"
+          v-show="routes.path == '/profile'"
           class="outer-most select-none"
         />
       </el-menu>

@@ -150,6 +150,7 @@ menus:
   purePiniaDoc: pinia
   pureRouterDoc: vue-router
   pureAbout: 关于
+  pureProfile: Profile
   pureResult: 结果页面
   pureSuccess: 成功页面
   pureFail: 失败页面
